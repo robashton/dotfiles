@@ -1,0 +1,12 @@
+*
+!.vim
+!.vim/
+!.vim/*/
+!.vim/*/*
+!.vim/*/*/*
+!.vim/*/*/*/*
+!.vim/*/*/*/*/*
+# If anybody can fix my aboves...
+
+!.vimrc
+
