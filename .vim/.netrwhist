@@ -1,9 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/robashton/src/workspikes/surfboard/node_modules/zombie/node_modules/jsdom/node_modules'
-let g:netrw_dirhist_2='/home/robashton/src/mmsketch/site'
-let g:netrw_dirhist_3='/home/robashton/src/workspikes/surfboard/test/add_cards'
-let g:netrw_dirhist_4='/home/robashton/src/workspikes/surfboard/test/contexts'
-let g:netrw_dirhist_5='/home/robashton/src/workspikes/surfboard/site/js'
-let g:netrw_dirhist_6='/home/robashton/src/workspikes/surfboard/.git'
-let g:netrw_dirhist_7='/home/robashton/src/workspikes/surfboard/src/routes'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/robashton/src/workspikes/surfboard/src/routes'
+let g:netrw_dirhist_2='/home/robashton/src/plates/test/fixtures'
+let g:netrw_dirhist_3='/home/robashton/src/workspikes/surfboard/src/templates/css'
