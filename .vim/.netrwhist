@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/robashton/src/arrayperf'
-let g:netrw_dirhist_2='/home/robashton/src/workspikes/spike-controls/static/js'
-let g:netrw_dirhist_3='/home/robashton/src/workspikes/spike-controls/static/js/views'
-let g:netrw_dirhist_4='/home/robashton/src/workspikes/spike-controls'
-let g:netrw_dirhist_5='/home/robashton/src/workspikes/spike-controls/static/fonts'
-let g:netrw_dirhist_6='/home/robashton/src/workspikes/spike-controls/test'
-let g:netrw_dirhist_7='/home/robashton/src/workspikes/spike-controls/test/controlzone'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/robashton/src/primojs/site/game/entities'
+let g:netrw_dirhist_2='/home/robashton/src/primojs/site/game/components'
+let g:netrw_dirhist_3='/home/robashton/src/primojs/site/game/entities'
+let g:netrw_dirhist_4='/etc/pulse'
