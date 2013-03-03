@@ -1,0 +1,11 @@
+pointer = 1 2 3 5 4 7 6 8 9 10 11 12
+
+clear control
+clear mod4
+
+keycode 133 = Control_L
+keycode 134 = Super_L
+
+add control = Control_L
+add mod4 = Super_R
+
