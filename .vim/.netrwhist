@@ -1,7 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/robashton/src/primojs/site/game/entities'
-let g:netrw_dirhist_2='/home/robashton/src/primojs/site/game/components'
-let g:netrw_dirhist_3='/home/robashton/src/primojs/site/game/entities'
-let g:netrw_dirhist_4='/etc/pulse'
-let g:netrw_dirhist_5='/home/robashton/src/blog/node_modules'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/robashton/src/rulemotion-canvas/src/server/src/server-glue'
+let g:netrw_dirhist_2='/home/robashton/src/rulemotion-canvas/src/server/build'
