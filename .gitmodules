@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule ".vim/colors"]
+	path = .vim/colors
+	url = git://github.com/tpope/vim-vividchalk.git
