@@ -29,6 +29,16 @@ hi TabLineFill ctermfg=grey ctermbg=white
 hi TabLine ctermfg=black ctermbg=white
 hi TabLineSel ctermfg=black ctermbg=red
 
+hi CursorLine cterm=none ctermbg=darkgrey
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+  au WinLeave * setlocal nocursorline
+  au WinLeave * setlocal nocursorcolumn
+augroup END
+
 set swapfile
 set dir=~/tmp
 set backupdir=~/tmp
