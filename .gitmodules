@@ -28,3 +28,21 @@
 [submodule ".vim/bundle/tslime.vim"]
 	path = .vim/bundle/tslime.vim
 	url = git://github.com/jgdavey/tslime.vim.git
+[submodule ".vim/bundle/vim-dispatch"]
+	path = .vim/bundle/vim-dispatch
+	url = git://github.com/tpope/vim-dispatch.git
+[submodule ".vim/bundle/vim-nodejs-errorformat"]
+	path = .vim/bundle/vim-nodejs-errorformat
+	url = git://github.com/felixge/vim-nodejs-errorformat.git
+[submodule ".vim/bundle/Omnisharp"]
+	path = .vim/bundle/Omnisharp
+	url = https://github.com/nosami/Omnisharp.git
+[submodule ".vim/bundle/vim-jst"]
+	path = .vim/bundle/vim-jst
+	url = https://github.com/briancollins/vim-jst.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = git@github.com:tpope/vim-surround.git
