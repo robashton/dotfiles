@@ -117,3 +117,6 @@ set guioptions-=LlRrb
 set guioptions-=M
 set guioptions-=m
 set guioptions-=T
+set guiheadroom=0
+set tags=$HOME/
+
