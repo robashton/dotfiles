@@ -50,49 +50,6 @@ noremap <Leader>a :Ack <cword><cr> --ignore-dir input
 noremap <Leader>s :w!<cr>
 noremap <Leader>m :w!<cr>:! mocha<cr>
 
-" Stolen off Artem
-" map <leader>t :call RunTestFile()<cr>
-" map <leader>T :call RunNearestTest()<cr>
-" 
-" function! RunTestFile(...)
-"   if a:0
-"     let command_suffix = a:1
-"   else
-"     let command_suffix = ""
-"   endif
-" 
-"   " Run the tests for the previously-marked file.
-"   let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-"   if in_test_file
-"     call SetTestFile()
-"   elseif !exists("t:grb_test_file")
-"     return
-"   end
-"   call RunTests(t:grb_test_file . command_suffix)
-" endfunction
-" 
-" function! RunNearestTest()
-"   let spec_line_number = line('.')
-"   call RunTestFile(":" . spec_line_number)
-" endfunction
-" 
-" function! SetTestFile()
-"   " Set the spec file that tests will be run for.
-"   let t:grb_test_file=@%
-" endfunction
-" 
-" function! RunTests(filename)
-"   :wa
-"   if match(a:filename, '\.feature') != -1
-"     let l:command = "zeus cucumber " . a:filename
-"   else
-"     let l:command = "zeus rspec -c " . a:filename
-"   end
-"   call system("tmux select-window -t " . g:run_tests_in_window)
-"   call system('tmux set-buffer "' . l:command . "\n\"")
-"   call system('tmux paste-buffer -d -t ' . g:run_tests_in_window)
-" endfunction
-" 
 let g:run_tests_in_window = 1
 
 "Gotta do it this way or the theme won't get loaded"
@@ -119,4 +76,3 @@ set guioptions-=m
 set guioptions-=T
 set guiheadroom=0
 set tags=$HOME/
-
