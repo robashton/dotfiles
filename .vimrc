@@ -10,6 +10,9 @@ aug QFClose
     au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
 
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
 
 syntax on
 filetype plugin indent on
@@ -59,7 +62,7 @@ function! SetTheme()
   highlight NonText ctermfg=black
   highlight VertSplit cterm=none gui=none
   highlight clear SignColumn
-  highlight CursorLine cterm=none ctermbg=darkgrey
+  highlight CursorLine cterm=none ctermbg=235
   highlight LineNr ctermfg=darkgrey
   highlight StatusLine ctermfg=white ctermbg=darkblue
   highlight StatusLineNC ctermfg=white ctermbg=blue
@@ -90,3 +93,4 @@ noremap <C-ScrollWheelLeft>  <nop>
 noremap <ScrollWheelRight>   <nop>
 noremap <S-ScrollWheelRight> <nop>
 noremap <C-ScrollWheelRight> <nop>
+
