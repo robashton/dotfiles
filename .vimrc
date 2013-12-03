@@ -79,7 +79,8 @@ set guioptions-=M
 set guioptions-=m
 set guioptions-=T
 set guiheadroom=0
-set tags=$HOME/
+set guifont=Ubuntu\ Mono\ 10
+set tags+=$HOME
 
 noremap <ScrollWheelUp>      <nop>
 noremap <S-ScrollWheelUp>    <nop>

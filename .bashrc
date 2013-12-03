@@ -110,3 +110,6 @@ function setgov ()
 {
     echo "$1" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 
 }
+
+ANDROID_SDK="/home/robashton/bin/sdk"
+export PATH="${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools"

@@ -1,9 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/robashton/src/cravendb'
-let g:netrw_dirhist_2='/home/robashton'
-let g:netrw_dirhist_3='/home'
-let g:netrw_dirhist_4='/home/robashton/src/cravendb'
-let g:netrw_dirhist_5='/home/robashton/bin'
-let g:netrw_dirhist_6='/home/robashton/src/cdec.openhealthdata/site/data'
-let g:netrw_dirhist_7='/home/robashton/src/cdec.openhealthdata/output/adhd-gp-scrips-drift'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/robashton/src/cravendb/src'
+let g:netrw_dirhist_2='/home/robashton/src/cravendb/src/cravendb'
+let g:netrw_dirhist_3='/home/robashton/src/cravendb/src-cljs'
+let g:netrw_dirhist_4='/home/robashton/src/cravendb/src-cljs/admin'
+let g:netrw_dirhist_5='/home/robashton/src/cravendb/admin'
+let g:netrw_dirhist_6='/home/robashton/src/cravendb/admin/css'
