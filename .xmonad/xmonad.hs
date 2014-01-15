@@ -10,5 +10,7 @@ main = do
         xmonad $ defaultConfig
                 { manageHook = manageDocks <+> manageHook defaultConfig
                 , layoutHook = noBorders $ avoidStruts $ layoutHook defaultConfig
+                , startupHook = do
+                    spawn "/bin/sh ~/.xmonad/startup-hook"
                 }
 
