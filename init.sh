@@ -19,3 +19,4 @@ git clone https://github.com/vim-scripts/paredit.vim.git	 .vim/bundle/paredit.vi
 git clone https://github.com/kien/ctrlp.vim.git	 .vim/bundle/ctrlp.vim
 git clone https://github.com/dgrnbrg/vim-redl.git .vim/bundle/vim-redl
 git clone git@github.com:jimenezrick/vimerl.git .vim/bundle/vimerl
+git clone https://github.com/scrooloose/nerdtree.git .vim/bundle/nerdtree
