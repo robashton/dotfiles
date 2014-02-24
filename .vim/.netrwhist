@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/robashton/src/cravendb/src'
-let g:netrw_dirhist_2='/home/robashton/src/cravendb/src/cravendb'
-let g:netrw_dirhist_3='/home/robashton/src/cravendb/src-cljs'
-let g:netrw_dirhist_4='/home/robashton/src/cravendb/src-cljs/admin'
-let g:netrw_dirhist_5='/home/robashton/src/cravendb/admin'
-let g:netrw_dirhist_6='/home/robashton/src/cravendb/admin/css'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/robashton/src/eventstore/src/EventStore/EventStore.Projections.Core/v8'

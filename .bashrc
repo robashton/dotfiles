@@ -113,3 +113,18 @@ function setgov ()
 
 ANDROID_SDK="/home/robashton/bin/sdk"
 export PATH="${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools"
+
+# Lazy arsehole tbh
+alias gc='git add -A && git commit -m'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source $HOME/.rvm/environments/default # and source the defauilt env
+
+alias dir_encoder_www='cd ~/id3as/VEE/apps/vee_encoder/priv/www/'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Erlang
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/robashton/build/otp_src_R16B02/lib/erl_interface/include
+export LIBRARY_PATH=$LIBRARY_PATH:/home/robashton/build/otp_src_R16B02/lib/erl_interface/obj/x86_64-unknown-linux-gnu

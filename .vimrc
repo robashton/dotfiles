@@ -5,6 +5,10 @@ set autoindent
 set relativenumber
 set mouse=
 
+if filereadable(".vim.custom")
+    so .vim.custom
+endif
+
 aug QFClose
     au!
     au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
@@ -66,6 +70,11 @@ function! SetTheme()
   highlight LineNr ctermfg=darkgrey
   highlight StatusLine ctermfg=white ctermbg=darkblue
   highlight StatusLineNC ctermfg=white ctermbg=blue
+endfunction
+
+function! Daytime()
+  colorscheme default
+set guifont=Ubuntu\ Mono\ 14
 endfunction
 
 augroup theming
