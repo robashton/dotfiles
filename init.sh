@@ -20,3 +20,5 @@ git clone https://github.com/kien/ctrlp.vim.git	 .vim/bundle/ctrlp.vim
 git clone https://github.com/dgrnbrg/vim-redl.git .vim/bundle/vim-redl
 git clone git@github.com:jimenezrick/vimerl.git .vim/bundle/vimerl
 git clone https://github.com/scrooloose/nerdtree.git .vim/bundle/nerdtree
+git clone git://github.com/altercation/vim-colors-solarized.git .vim/bundle/vim-solarized
+git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
