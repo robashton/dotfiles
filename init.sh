@@ -22,3 +22,5 @@ git clone git@github.com:jimenezrick/vimerl.git .vim/bundle/vimerl
 git clone https://github.com/scrooloose/nerdtree.git .vim/bundle/nerdtree
 git clone git://github.com/altercation/vim-colors-solarized.git .vim/bundle/vim-solarized
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
+git clone git@github.com:mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
+git clone https://github.com/edkolev/erlang-motions.vim ~/.vim/bundle/erlang-motions.vim
