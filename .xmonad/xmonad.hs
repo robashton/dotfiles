@@ -6,11 +6,12 @@ import XMonad.Hooks.ManageDocks
 import System.IO
 import XMonad.Config.Gnome
 
-main = do
-        xmonad $ defaultConfig
-                { manageHook = manageDocks <+> manageHook defaultConfig
-                , layoutHook = noBorders $ avoidStruts $ layoutHook defaultConfig
+main = xmonad $ gnomeConfig
+                { manageHook = manageDocks <+> manageHook gnomeConfig
+                , layoutHook = noBorders $ avoidStruts $ layoutHook gnomeConfig
+                , keys = keys defaultConfig -- Naff off gnome, I want default bindings
                 , startupHook = do
                     spawn "/bin/sh ~/.xmonad/startup-hook"
+                    startupHook gnomeConfig
                 }
 

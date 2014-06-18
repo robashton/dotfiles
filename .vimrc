@@ -27,7 +27,7 @@ syntax on
 filetype plugin indent on
 let vimclojure#HighlightBuiltins =1
 let vimclojure#ParenRainbow =1
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
@@ -35,7 +35,7 @@ nnoremap bn :bn<cr>
 nnoremap bl :bp<cr>
 
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-autocmd CursorHold * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"autocmd CursorHold * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 nnoremap <leader>tp :OmniSharpAddToProject<cr>
 nnoremap <space> :OmniSharpGetCodeActions<cr>

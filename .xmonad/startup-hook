@@ -1,5 +1,5 @@
 #! bin/bash
 
-gnome-sound-applet & 
-syndaemon -d -t 0.5
+# gnome-sound-applet &
+# syndaemon -d -t 0.5
 sleep 1 && xmodmap /home/robashton/.Xmodmap
