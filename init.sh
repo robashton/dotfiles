@@ -24,6 +24,6 @@ git clone git://github.com/altercation/vim-colors-solarized.git .vim/bundle/vim-
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 git clone git@github.com:mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
 git clone https://github.com/edkolev/erlang-motions.vim ~/.vim/bundle/erlang-motions.vim
-git clone git@github.com:laurilehmijoki/haskellmode-vim.git ~/.vim/bundle/haskellmode-vim
 git clone git@github.com:eagletmt/ghcmod-vim.git ~/.vim/bundle/ghcmod-vim
 git clone git@github.com:eagletmt/neco-ghc.git ~/.vim/bundle/neco-ghc
+git clone https://github.com/raichoo/haskell-vim.git ~/.vim/bundle/haskell-vim
