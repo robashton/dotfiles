@@ -8,6 +8,7 @@ tmux -2 new-session -d -s $SESSION
 tmux new-window -t $SESSION:1 -n 'OSK'
 tmux select-pane -t 0
 tmux send-keys "cd /host/src/osk" C-m
+tmux send-keys ". env.sh" C-m
 tmux send-keys "make && ./run.sh osk" C-m
 
 # Set up a new window for running nodejs

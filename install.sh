@@ -52,6 +52,7 @@ function install_packages {
     apt_install xmonad
     apt_install gnome-panel
     install_erlang
+    apt_install tig
     apt_install suckless-tools
     apt_install vim-gnome
     apt_install exuberant-ctags
@@ -69,6 +70,12 @@ function setup_super {
 function setup_xmonad {
   echo "Setting up xmonad"
   xmonad --recompile
+}
+
+function setup_git {
+  git config --global user.name "Rob Ashton"
+  git config --global user.email "robashton@codeofrob.com"
+  git config --global push.default simple
 }
 
 function setup_vim {
