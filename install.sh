@@ -66,6 +66,11 @@ function setup_super {
   cp _cfg/super.tab /etc/super.tab
 }
 
+function setup_xmonad {
+  echo "Setting up xmonad"
+  xmonad --recompile
+}
+
 function setup_vim {
   ./_cfg/setup_vim.sh
 }
@@ -74,3 +79,4 @@ function setup_vim {
 install_packages
 setup_super
 setup_vim
+setup_xmonad
