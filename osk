@@ -1,0 +1,8 @@
+#!/bin/bash
+cd ~/environments/id3as/src/osk
+
+gnome-terminal --working-directory=~/environments/id3as --command "./run.sh bash -l"
+gnome-terminal --working-directory=~/environments/id3as/src/osk --command "vim"
+
+super chown -R $USER .
+super chgrp -R $USER .
