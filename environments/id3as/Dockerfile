@@ -164,6 +164,8 @@ RUN npm install -g browserify
 RUN npm install -g stylus
 RUN npm install -g nodemon
 
+# Useful scripts
+ADD assets/osk.sh
 
 # ================================================== #
 #                     clean up                       #
