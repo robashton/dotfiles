@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if [[ $UID -ne 0 ]]; then
+  echo "$0 must be run as root"
+  exit 1
+fi
+
+function install_plugin {
+  local source=$1
+  local output=$2
+  local full_path="/home/robashton/.vim/bundle/$output"
+  if [ ! -d $full_path ]; then
+    echo "Installing $output from $source"
+    su robashton -c "git clone $source $full_path"
+  else
+    echo "Updating $output from $source"
+    cd $full_path
+    su robashton -c "git pull"
+  fi;
+}
+
+install_plugin "https://github.com/kchmck/vim-coffee-script.git" "vim-coffee-script"
+install_plugin "https://github.com/digitaltoad/vim-jade.gi" "vim-jade"
+install_plugin "https://github.com/wavded/vim-stylus.gi" "vim-stylus"
+install_plugin "https://github.com/scrooloose/syntastic.git" "syntastic"
+install_plugin "https://github.com/tpope/vim-sensible.git" "vim-sensible"
+install_plugin "https://github.com/tpope/vim-rails.git"	"vim-rails"
+install_plugin "https://github.com/mileszs/ack.vim.git"	"ack.vim"
+install_plugin "https://github.com/tpope/vim-fugitive.git" "vim-fugitive"
+install_plugin "https://github.com/jgdavey/tslime.vim.git" "tslime.vim"
+install_plugin "https://github.com/tpope/vim-dispatch.git" "vim-dispatch"
+install_plugin "https://github.com/felixge/vim-nodejs-errorformat.git" "vim-nodejs-errorformat"
+install_plugin "https://github.com/nosami/Omnisharp.git" "Omnisharp"
+install_plugin "https://github.com/briancollins/vim-jst.git" "vim-jst"
+install_plugin "https://github.com/pangloss/vim-javascript.git" "vim-javascript"
+install_plugin "https://github.com/pope/vim-surround.git" "vim-surround"
+install_plugin "https://github.com/guns/vim-clojure-static.git" "vim-clojure-static"
+install_plugin "https://github.com/tpope/vim-fireplace.git" "vim-fireplace"
+install_plugin "https://github.com/vim-scripts/paredit.vim.git" "paredit.vim.git"
+install_plugin "https://github.com/kien/ctrlp.vim.git" "ctrlp.vim"
+install_plugin "https://github.com/dgrnbrg/vim-redl.git" "vim-redl"
+install_plugin "https://github.com/jimenezrick/vimerl.git" "vimerl"
+install_plugin "https://github.com/scrooloose/nerdtree.git" "nerdtree"
+install_plugin "https://github.com/altercation/vim-colors-solarized.git" "vim-solarized"
+install_plugin "https://github.com/bling/vim-airline.git" "vim-airline"
+install_plugin "https://github.com/mxw/vim-jsx.git" "vim-jsx"
+install_plugin "https://github.com/edkolev/erlang-motions.vi" "erlang-motions.vim"
+install_plugin "https://github.com/eagletmt/ghcmod-vim.git" "ghcmod-vim"
+install_plugin "https://github.com/eagletmt/neco-ghc.git" "neco-ghc"
+install_plugin "https://github.com/raichoo/haskell-vim.git" "haskell-vim"

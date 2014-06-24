@@ -17,18 +17,6 @@ function config_exists {
   return $(grep -Fxq "$line" $file)
 }
 
-function add_line_to_config {
-  local file=$1
-  local line=$2
-  config_exists $file $line
-  if [ $? -eq 0 ]; then
-    echo "Adding $line to $file"
-    echo $line >> $file
-  else
-    echo "Skipping $line"
-  fi;
-}
-
 function apt_install {
   local package=$1
   package_exists $package
@@ -65,7 +53,6 @@ function install_packages {
     apt_install gnome-panel
     install_erlang
     apt_install suckless-tools
-    apt_install git
     apt_install vim-gnome
     apt_install exuberant-ctags
     apt_install acpi
@@ -79,6 +66,11 @@ function setup_super {
   cp _cfg/super.tab /etc/super.tab
 }
 
-ensure_sources
+function setup_vim {
+  ./_cfg/setup_vim.sh
+}
+
+#ensure_sources
 install_packages
 setup_super
+setup_vim
