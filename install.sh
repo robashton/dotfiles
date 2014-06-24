@@ -63,7 +63,7 @@ function install_packages {
 }
 
 function setup_super {
-  local config="docker -u+g=root /usr/bin/docker.io robashton"
+  local config="docker.io /usr/bin/docker.io robashton"
   local file="/etc/super.tab"
   config_exists $file $config
   if [ $? -eq 0 ]; then

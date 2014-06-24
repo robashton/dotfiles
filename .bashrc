@@ -113,3 +113,4 @@ function setgov ()
 
 # Lazy arsehole tbh
 alias gc='git add -A && git commit -m'
+alias docker='super docker.io'
