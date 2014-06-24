@@ -1,0 +1,37 @@
+#
+# super.tab    super(1) configuration file.
+#              $Id: super.tab,v 1.3 2002-06-01 08:28:00 robert Exp $
+#
+
+#
+# This file lists commands that super(1) will execute for you as root.
+# Therefore, DO NOT ADD ANY ENTRIES until you understand how this works.
+#
+# See /usr/share/doc/super/examples for examples on both this file and its
+# commands. See the super.tab(5) man page for information.
+#
+
+#
+# Global options =========================================================
+#
+:global_options	\
+    logfile=/var/log/super.log	# log to this file... \
+    renewtime=y			# this says the user doesn't need to re-enter \
+				# password if super cmds are issued frequently \
+				# (so that we "know" it must be all one user) \
+    # patterns=shell		# set user/group/host patterns matching to \
+				# Bourne-shell style patterns \
+				# (but note it's commented out). \
+    # timestampuid=sysmgr	# create timestamp files w/ uid sysmgr \
+				# (but note it's commented out). \
+    # loguid=sysmgr		# create logfile under uid sysmgr \
+				# (but note it's commented out).
+
+#
+# A useful definition...
+#
+:define OfficeHours {8:00-17:30}/{mon,tue,wed,thu,fri}
+
+docker.io /usr/bin/docker.io robashton
+chown /bin/chown robashton
+chgrp /bin/chgrp robashton

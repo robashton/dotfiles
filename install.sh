@@ -17,6 +17,18 @@ function config_exists {
   return $(grep -Fxq "$line" $file)
 }
 
+function add_line_to_config {
+  local file=$1
+  local line=$2
+  config_exists $file $line
+  if [ $? -eq 0 ]; then
+    echo "Adding $line to $file"
+    echo $line >> $file
+  else
+    echo "Skipping $line"
+  fi;
+}
+
 function apt_install {
   local package=$1
   package_exists $package
@@ -63,15 +75,8 @@ function install_packages {
 }
 
 function setup_super {
-  local config="docker.io /usr/bin/docker.io robashton"
-  local file="/etc/super.tab"
-  config_exists $file $config
-  if [ $? -eq 0 ]; then
-    echo "Adding docker to super"
-    echo $config >> $file
-  else
-    echo "Super already configured"
-  fi;
+  echo "Setting up super"
+  cp _cfg/super.tab /etc/super.tab
 }
 
 ensure_sources

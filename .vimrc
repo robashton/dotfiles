@@ -120,7 +120,7 @@ endfunction
 
 augroup theming
   autocmd!
-  autocmd VimEnter * call SetDarkTheme()
+  autocmd VimEnter * call SetLightTheme()
 augroup END
 
 
