@@ -57,9 +57,6 @@ nnoremap <C-right> :vertical resize +10<cr>
 " I like a solid line
 set fcs+=vert:│
 
-let javascript_enable_domhtmlcss=1
-let g:javascript_conceal=1
-
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
