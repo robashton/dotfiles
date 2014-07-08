@@ -60,6 +60,9 @@ function install_packages {
     apt_install docker.io
     apt_install skype
     apt_install super
+    apt_install nodejs
+    apt_install build-essential
+    apt_install silversearcher-ag
 }
 
 function setup_super {
@@ -76,6 +79,11 @@ function setup_git {
   git config --global user.name "Rob Ashton"
   git config --global user.email "robashton@codeofrob.com"
   git config --global push.default simple
+}
+
+function setup_symlinks {
+  ln -fs /usr/bin/nodejs /usr/bin/node
+  ln -fs /usr/bin/docker.io /usr/bin/docker
 }
 
 function setup_vim {

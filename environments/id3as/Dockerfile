@@ -104,45 +104,45 @@ RUN ln -s /opt/erlang/relx/relx /usr/local/bin/relx
 ADD ssh/ /root/.ssh/
 RUN chmod 700 /root/.ssh/id_rsa
 
-ENV NATIVEDEPSDIR /nativedeps
-ENV PREFIX $NATIVEDEPSDIR/bin
-RUN mkdir -p $NATIVEDEPSDIR
-
-
-# X264
-RUN cd $NATIVEDEPSDIR              && git clone git@github.com:id3as/x264.git
-RUN cd $NATIVEDEPSDIR/x264         && ./configure --enable-static --prefix=$PREFIX
-RUN cd $NATIVEDEPSDIR/x264         && make && sudo make install
-
-
-
-# LIBFDK_AAC
-RUN cd $NATIVEDEPSDIR               && wget http://sourceforge.net/projects/opencore-amr/files/fdk-aac/fdk-aac-0.1.1.tar.gz/download && tar xf download
-RUN cd $NATIVEDEPSDIR/fdk-aac-0.1.1 && ./configure --prefix=$PREFIX
-RUN cd $NATIVEDEPSDIR/fdk-aac-0.1.1 && make && sudo make install
-RUN cd $NATIVEDEPSDIR               && rm download
-
-
-
-# MAINCONCEPT codec
-RUN cd $NATIVEDEPSDIR               && git clone git@github.com:id3as/MainConceptVC1Codec
-RUN cd $NATIVEDEPSDIR               && sudo ln -s "`pwd`/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib/libdemo_enc_vc1.so" $PREFIX/lib/libdemo_enc_vc1.so
-RUN cd $NATIVEDEPSDIR               && sudo ln -s "`pwd`/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib/libdemo_enc_vc1.so" $PREFIX/lib/libmc_enc_vc1.so
-
-
-
-# LIBAV on Linux
-RUN cd $NATIVEDEPSDIR               && git clone git@github.com:id3as/libav.git
-RUN cd $NATIVEDEPSDIR/libav         && ./configure --enable-static --enable-libx264 --enable-gpl --enable-libfdk-aac --enable-nonfree --enable-libmcvc1 --extra-cflags="-I$NATIVEDEPSDIR/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/include -I$NATIVEDEPSDIR/bin/include" --extra-ldflags="-L$NATIVEDEPSDIR/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib -L$NATIVEDEPSDIR/bin/lib/" --prefix=$PREFIX
-RUN cd $NATIVEDEPSDIR/libav         && make && sudo make install
-
-
-
-ENV C_INCLUDE_PATH $NATIVEDEPSDIR/bin/include
-ENV LIBRARY_PATH= $NATIVEDEPSDIR/bin/lib
-ENV LD_LIBRARY_PATH $NATIVEDEPSDIR/bin/lib
-ENV PATH $PREFIX/bin:$PREFIX/lib:$PATH
-
+#ENV NATIVEDEPSDIR /nativedeps
+#ENV PREFIX $NATIVEDEPSDIR/bin
+#RUN mkdir -p $NATIVEDEPSDIR
+#
+#
+## X264
+#RUN cd $NATIVEDEPSDIR              && git clone git@github.com:id3as/x264.git
+#RUN cd $NATIVEDEPSDIR/x264         && ./configure --enable-static --prefix=$PREFIX
+#RUN cd $NATIVEDEPSDIR/x264         && make && sudo make install
+#
+#
+#
+## LIBFDK_AAC
+#RUN cd $NATIVEDEPSDIR               && wget http://sourceforge.net/projects/opencore-amr/files/fdk-aac/fdk-aac-0.1.1.tar.gz/download && tar xf download
+#RUN cd $NATIVEDEPSDIR/fdk-aac-0.1.1 && ./configure --prefix=$PREFIX
+#RUN cd $NATIVEDEPSDIR/fdk-aac-0.1.1 && make && sudo make install
+#RUN cd $NATIVEDEPSDIR               && rm download
+#
+#
+#
+## MAINCONCEPT codec
+#RUN cd $NATIVEDEPSDIR               && git clone git@github.com:id3as/MainConceptVC1Codec
+#RUN cd $NATIVEDEPSDIR               && sudo ln -s "`pwd`/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib/libdemo_enc_vc1.so" $PREFIX/lib/libdemo_enc_vc1.so
+#RUN cd $NATIVEDEPSDIR               && sudo ln -s "`pwd`/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib/libdemo_enc_vc1.so" $PREFIX/lib/libmc_enc_vc1.so
+#
+#
+#
+## LIBAV on Linux
+#RUN cd $NATIVEDEPSDIR               && git clone git@github.com:id3as/libav.git
+#RUN cd $NATIVEDEPSDIR/libav         && ./configure --enable-static --enable-libx264 --enable-gpl --enable-libfdk-aac --enable-nonfree --enable-libmcvc1 --extra-cflags="-I$NATIVEDEPSDIR/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/include -I$NATIVEDEPSDIR/bin/include" --extra-ldflags="-L$NATIVEDEPSDIR/MainConceptVC1Codec/demo_codec_sdk_linux_x64_release/lib -L$NATIVEDEPSDIR/bin/lib/" --prefix=$PREFIX
+#RUN cd $NATIVEDEPSDIR/libav         && make && sudo make install
+#
+#
+#
+#ENV C_INCLUDE_PATH $NATIVEDEPSDIR/bin/include
+#ENV LIBRARY_PATH= $NATIVEDEPSDIR/bin/lib
+#ENV LD_LIBRARY_PATH $NATIVEDEPSDIR/bin/lib
+#ENV PATH $PREFIX/bin:$PREFIX/lib:$PATH
+#
 ENV SOURCEDIR /src
 RUN mkdir $SOURCEDIR
 
@@ -163,9 +163,6 @@ CMD /usr/sbin/sshd -D
 RUN npm install -g browserify
 RUN npm install -g stylus
 RUN npm install -g nodemon
-
-# Useful scripts
-ADD assets/osk.sh
 
 # ================================================== #
 #                     clean up                       #
