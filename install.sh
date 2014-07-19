@@ -33,6 +33,8 @@ function apt_install {
 function ensure_sources {
   sh -c 'echo "deb http://archive.canonical.com/ubuntu trusty partner" > /etc/apt/sources.list.d/canonical_partner.list'
   dpkg --add-architecture i386
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+  sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
   apt-get update
   apt-get upgrade
 };
@@ -57,12 +59,13 @@ function install_packages {
     apt_install vim-gnome
     apt_install exuberant-ctags
     apt_install acpi
-    apt_install docker.io
     apt_install skype
     apt_install super
     apt_install nodejs
     apt_install build-essential
     apt_install silversearcher-ag
+    apt_install tmux
+     apt_install lxc-docker
 }
 
 function setup_super {

@@ -32,6 +32,6 @@
 #
 :define OfficeHours {8:00-17:30}/{mon,tue,wed,thu,fri}
 
-docker.io /usr/bin/docker.io robashton
+docker /usr/bin/docker robashton
 chown /bin/chown robashton
 chgrp /bin/chgrp robashton

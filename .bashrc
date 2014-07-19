@@ -113,5 +113,7 @@ function setgov ()
 
 # Lazy arsehole tbh
 alias gc='git add -A && git commit -m'
-alias docker='super docker.io'
 alias node="nodejs"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
