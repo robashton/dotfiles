@@ -7,6 +7,11 @@ git pull --rebase
 # Open a split for occy
 gnome-terminal --working-directory=$HOME/environments/id3as --command "bash occy.sh"
 
+# Wait for it to start
+echo "Waiting for occy to start"
+sleep 20
+echo "Waited, going for it"
+
 # Open a split for background
 gnome-terminal --working-directory=$HOME/environments/id3as --command "bash osk.sh /host/assets/osk.sh"
 
