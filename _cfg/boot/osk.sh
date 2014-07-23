@@ -4,8 +4,11 @@
 cd $HOME/environments/id3as/src/osk
 git pull --rebase
 
+# Open a split for occy
+gnome-terminal --working-directory=$HOME/environments/id3as --command "bash occy.sh"
+
 # Open a split for background
-gnome-terminal --working-directory=$HOME/environments/id3as --command "bash run.sh /host/assets/osk.sh"
+gnome-terminal --working-directory=$HOME/environments/id3as --command "bash osk.sh /host/assets/osk.sh"
 
 # Make sure we own our src
 super chown -R robashton $HOME/environments/id3as/src/osk/
