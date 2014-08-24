@@ -9,12 +9,12 @@ function install_plugin {
   local source=$1
   local output=$2
   local full_path="/home/robashton/.vim/bundle/$output"
-  if [ ! -d $full_path ]; then
+  if [ ! -d "$full_path" ]; then
     echo "Installing $output from $source"
     su robashton -c "git clone $source $full_path"
   else
     echo "Updating $output from $source"
-    cd $full_path
+    cd "$full_path"
     su robashton -c "git pull"
   fi;
 }
@@ -48,3 +48,10 @@ install_plugin "https://github.com/edkolev/erlang-motions.vi" "erlang-motions.vi
 install_plugin "https://github.com/eagletmt/ghcmod-vim.git" "ghcmod-vim"
 install_plugin "https://github.com/eagletmt/neco-ghc.git" "neco-ghc"
 install_plugin "https://github.com/raichoo/haskell-vim.git" "haskell-vim"
+install_plugin "git@github.com:Shougo/vimproc.vim.git" "vimproc.vim"
+
+pushd "~/.vim/bundle/vimproc.vim"
+make
+popd
+
+curl "http://www.vim.org/scripts/download_script.php?src_id=20377" > "~/.vim/plugin/shim.vim"

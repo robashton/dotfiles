@@ -56,6 +56,8 @@ function install_packages {
     install_erlang
     apt_install tig
     apt_install suckless-tools
+    apt_install ghc
+    apt_install ghc-mod
     apt_install vim-gnome
     apt_install exuberant-ctags
     apt_install acpi
@@ -65,7 +67,8 @@ function install_packages {
     apt_install build-essential
     apt_install silversearcher-ag
     apt_install tmux
-     apt_install lxc-docker
+    apt_install lxc-docker
+    apt_install kdiff3
 }
 
 function setup_super {

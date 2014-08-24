@@ -47,9 +47,13 @@ RUN apt-get install -y sudo
 RUN apt-get install -y yasm
 RUN apt-get install -y gawk
 RUN apt-get install -y libbz2-dev
+RUN apt-get install -y libfreetype6-dev
+RUN apt-get install -y mediainfo
 RUN apt-get install -y libasound2-dev
 RUN apt-get install -y tmux
 RUN apt-get install -y python-pip
+RUN apt-get install -y ttf-ubuntu-font-family
+RUN apt-get install -y mongodb
 RUN pip install awscli
 
 # ================================================== #

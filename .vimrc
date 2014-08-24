@@ -18,8 +18,8 @@ aug END
 " Gnome terminal supports 256 colours
 " So enable it if we want
 if $COLORTERM == 'gnome-terminal'
- " set t_Co=256 " For tomorrow-night
-  set t_Co=16 " For solarized
+  set t_Co=256 " For tomorrow-night
+  "set t_Co=16 " For solarized
 endif
 
 
@@ -30,12 +30,14 @@ let vimclojure#ParenRainbow =1
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:haddock_browser = 'google-chrome'
 
 nnoremap bn :bn<cr>
 nnoremap bl :bp<cr>
 
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 "autocmd CursorHold * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd BufWritePost *.hs :GhciFile
 
 nnoremap <leader>tp :OmniSharpAddToProject<cr>
 nnoremap <space> :OmniSharpGetCodeActions<cr>
@@ -117,7 +119,7 @@ endfunction
 
 augroup theming
   autocmd!
-  autocmd VimEnter * call SetLightTheme()
+  autocmd VimEnter * call SetDarkTheme()
 augroup END
 
 

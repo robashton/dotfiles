@@ -24,3 +24,8 @@ gnome-terminal --working-directory=$HOME/environments/id3as/src/osk --command "v
 
 # Leave this terminal open for luls
 echo "Go to work brave soldier"
+
+OCCYIP=$(super docker inspect occy | grep IPAddress | awk '{print $2}' | tr -d '",\n')
+OSKIP=$(super docker inspect id3as | grep IPAddress | awk '{print $2}' | tr -d '",\n')
+
+xdg-open "http://$OSKIP:8081"
