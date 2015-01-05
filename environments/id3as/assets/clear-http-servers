@@ -1,0 +1,4 @@
+mongo new_arqiva_manager_local --eval "db.http_server.drop();"
+mongo new_arqiva_manager_local --eval "db.configured_node.drop();"
+mongo new_arqiva_manager_local --eval "db.unconfigured_node.drop();"
+

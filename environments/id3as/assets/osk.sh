@@ -13,10 +13,10 @@ tmux select-pane -t 0
 tmux send-keys "cd /host/src/osk" C-m
 tmux send-keys ". env.sh" C-m
 tmux send-keys "cd deps/id3as_media && git pull && cd ../.." C-m
+tmux send-keys "cd deps/id3as_media_drivres && git pull && cd ../.." C-m
 tmux send-keys "cd deps/id3as_common && git pull && cd ../.." C-m
-tmux send-keys "make -j" C-m
-tmux send-keys "cd ../" C-m
-tmux send-keys "nodemon --watch osk/apps -e erl --exec ./osk.sh" C-m
+tmux send-keys "make" C-m
+tmux send-keys "./run.sh -e robashton osk" C-m
 
 tmux select-pane -t 1
 tmux split-window -h

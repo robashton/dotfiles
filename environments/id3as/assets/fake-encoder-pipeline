@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Set default window
+tmux new-window -t $SESSION:2 -n 'Streaming'
+
+tmux send-keys "cd /host/src/arqiva-encoder" C-m
+tmux split-window -v
+
+tmux select-pane -t 0
+tmux send-keys ". env.sh" C-m
+tmux send-keys "./nativedeps/build/bin/avconv -re -i /host/assets/test.ts -c copy -f mpegts udp://127.0.0.1:3333\?pkt_size=1316" C-m
+
+tmux select-pane -t 1
+tmux send-keys "cd /host/src/arqiva-encoder" C-m
+tmux send-keys ". env.sh" C-m
+tmux send-keys "./run.sh -m robashton http" C-m
+

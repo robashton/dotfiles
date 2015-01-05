@@ -2,7 +2,7 @@
 
 # Update our codes
 cd $HOME/environments/id3as/src/osk
-git pull --rebase
+git pull --rebase || { echo "Failed to git ull, carrying on"; }
 
 # Open a split for occy
 gnome-terminal --working-directory=$HOME/environments/id3as --command "bash occy.sh"
