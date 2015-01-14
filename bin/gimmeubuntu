@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIRTOMOUNT=`pwd`
+THISDIR=${0%/*}
+
+docker run -v $DIRTOMOUNT:/host -i -t ubuntu bash -c "cd /host ; bash -l"
+
