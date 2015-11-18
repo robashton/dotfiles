@@ -55,3 +55,4 @@ popd
 
 mkdir -p "$HOME/.vim/plugin"
 curl "http://www.vim.org/scripts/download_script.php?src_id=20377" > "$HOME/.vim/plugin/shim.vim"
+curl "http://www.vim.org/scripts/download_script.php?src_id=6678" > "$HOME/.vim/syntax/htmldjango.vim"

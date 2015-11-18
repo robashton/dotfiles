@@ -34,7 +34,7 @@ function ensure_sources {
   sh -c 'echo "deb http://archive.canonical.com/ubuntu trusty partner" > /etc/apt/sources.list.d/canonical_partner.list'
   dpkg --add-architecture i386
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-  sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+  sh -c 'echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list'
   apt-get update
   apt-get upgrade
 };
@@ -69,6 +69,9 @@ function install_packages {
     apt_install tmux
     apt_install lxc-docker
     apt_install kdiff3
+    apt_install openssh-server
+    apt_install htop
+    apt_install gawk
 }
 
 function setup_super {
@@ -87,17 +90,21 @@ function setup_git {
   git config --global push.default simple
 }
 
+function setup_user {
+  usermod -G docker robashton
+}
+
 function setup_symlinks {
   ln -fs /usr/bin/nodejs /usr/bin/node
-  ln -fs /usr/bin/docker.io /usr/bin/docker
 }
 
 function setup_vim {
   ./_cfg/setup_vim.sh
 }
 
-#ensure_sources
+ensure_sources
 install_packages
 setup_super
 setup_vim
 setup_xmonad
+setup_user
