@@ -5,6 +5,18 @@ set autoindent
 set relativenumber
 set mouse=
 
+let g:ghc = 'stackghc'
+let g:ghc_pkg = 'stackghcpkg'
+let g:shim_ghciInterp = 'stack ghci'
+let g:haddock_browser = 'google-chrome'
+"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"Disable syntastic cos vimerl does this better
+"let g:syntastic_erlang_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
+
 " Allow project specific defaults (mostly override the above)
 if filereadable(".vim.custom")
     so .vim.custom
@@ -23,22 +35,13 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 
+
 "set completeopt=longest,menuone
 syntax on
 filetype plugin indent on
 let vimclojure#HighlightBuiltins =1
 let vimclojure#ParenRainbow =1
-"let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
-"Disable syntastic cos vimerl does this better
-"let g:syntastic_erlang_checkers = []
-let g:syntastic_javascript_checkers = ['eslint']
-
-let g:ghc = 'stackghc'
-let g:shim_ghciInterp = 'stack ghci'
-let g:haddock_browser = 'google-chrome'
 
 set lazyredraw
 
