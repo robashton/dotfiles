@@ -2,4 +2,4 @@
 
 cd /host/src/arqiva-encoder
 source env.sh
-./nativedeps/build/bin/avconv -re -i /host/assets/test.ts -c copy -f mpegts udp://127.0.0.1:4444\?pkt_size=1316
+./nativedeps/build/bin/avconv -re -i /host/assets/test.ts -c copy -f mpegts udp://172.17.0.28:4444\?pkt_size=1316

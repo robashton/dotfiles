@@ -111,9 +111,14 @@ function setgov ()
     echo "$1" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 }
 
+if [ -d ~/bin ]; then
+  export PATH="~/bin:$PATH"
+fi
+
 # Lazy arsehole tbh
 alias gc='git add -A && git commit -m'
 alias node="nodejs"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+alias fuck='eval $(thefuck $(fc -ln -1))'

@@ -3,5 +3,5 @@
 DIRTOMOUNT=`pwd`
 THISDIR=${0%/*}
 
-docker run -v $DIRTOMOUNT:/host -i -t ubuntu bash -c "cd /host ; bash -l"
+docker run -v $DIRTOMOUNT:/host -i -t ubuntu_with_curl bash -c "cd /host ; bash -l"
 

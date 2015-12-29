@@ -21,5 +21,3 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export GOROOT=$HOME/bin/go
-export PATH=$PATH:$GOROOT/bin

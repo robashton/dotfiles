@@ -23,6 +23,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 
+"set completeopt=longest,menuone
 syntax on
 filetype plugin indent on
 let vimclojure#HighlightBuiltins =1
@@ -30,22 +31,46 @@ let vimclojure#ParenRainbow =1
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"Disable syntastic cos vimerl does this better
+"let g:syntastic_erlang_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:ghc = 'stackghc'
+let g:shim_ghciInterp = 'stack ghci'
 let g:haddock_browser = 'google-chrome'
+
+set lazyredraw
+
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*.d,*.beam
+
 
 nnoremap bn :bn<cr>
 nnoremap bl :bp<cr>
 
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 "autocmd CursorHold * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+autocmd BufRead *.dtl set ft=htmldjango
 autocmd BufWritePost *.hs :GhciFile
 
-nnoremap <leader>tp :OmniSharpAddToProject<cr>
-nnoremap <space> :OmniSharpGetCodeActions<cr>
-nnoremap <leader>ft :OmniSharpFindType<cr>
+
 nnoremap gd :OmniSharpGotoDefinition<cr>
 autocmd CursorHold *.cs call OmniSharp#TypeLookup()
 set updatetime=500
 set cmdheight=1
+
+
+"
+"nnoremap <space> :OmniSharpGetCodeActions<cr>
+nnoremap <leader>tp :OmniSharpAddToProject<cr>
+nnoremap <leader>ft :OmniSharpFindType<cr>
+nnoremap <space> :GhcModType<cr>
 
 " Load all the plug-ins
 call pathogen#infect()
@@ -86,12 +111,14 @@ map <C-n> :NERDTreeToggle<CR>
 function! SetDarkTheme()
   colorscheme Tomorrow-Night-Bright
   highlight NonText ctermfg=black
+  highlight SpellBad ctermfg=black
   highlight VertSplit cterm=none gui=none
   highlight clear SignColumn
   highlight CursorLine cterm=none ctermbg=235
   highlight LineNr ctermfg=darkgrey
   highlight StatusLine ctermfg=white ctermbg=darkblue
   highlight StatusLineNC ctermfg=white ctermbg=blue
+  highlight Normal ctermbg=none
 endfunction
 
 " Having a change of scenery
@@ -150,3 +177,21 @@ noremap <S-ScrollWheelRight> <nop>
 noremap <C-ScrollWheelRight> <nop>
 
 autocmd BufWritePre * :%s/\s\+$//e " Get rid of trailing whitespace
+
+if !empty(glob("erl.mk"))
+  :set path+=apps/**
+  :set path+=deps/**
+endif
+
+if !empty(glob(".git"))
+  function! GitLsFilesModified(A,L,P)
+    let pattern = a:A
+    if len(pattern) > 0
+      return split(system("git ls-files --modified \| grep " . pattern), "\n")
+    else
+      return split(system("git ls-files --modified"), "\n")
+    endif
+  endfunction
+  command! -complete=customlist,GitLsFilesModified -nargs=1 G :edit <args>
+endif
+
