@@ -1,0 +1,75 @@
+#!/bin/bash
+set -e
+
+SESSION=ARQIVA
+
+source shared_functions
+
+MONGODIR=$PWD/_mongo
+
+echo $MONGODIR
+
+echo "Stopping any running containers"
+nuke_all_containers
+
+OCCY_VERSION=$(docker images | grep occy_encoder | head -n 1 | awk '{print $2}')
+if [[ -z $OCCY_VERSION ]]; then
+  echo "Not running as occy not found, please run the scripts"
+  exit 1
+else
+  echo "Running Encoder Occy $OCCY_VERSION"
+  OCCYID=$(docker run -d --publish 80:8095 --name occy_encoder arqiva.occy_encoder:$OCCY_VERSION /sbin/my_init)
+fi
+
+echo "Running Redis"
+REDISID=$(docker run -d -v /home/robashton/environments/id3as/_redis/:/data --name redis redis redis-server --appendonly yes)
+
+wait_for_container redis
+wait_for_container occy_encoder
+
+echo "Spinning tmux"
+tmux -2 new-session -d -s $SESSION
+
+tmux new-window -t $SESSION:1 -n 'Redis'
+tmux send-keys "docker exec -ti $REDISID redis-cli" C-m
+
+tmux new-window -t $SESSION:2 -n 'Manager'
+tmux send-keys "idbash -l redis:redis -n manager -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m robashton -n manager -c k84l0661L26a aqb_manager"
+
+wait_for_container manager
+
+tmux new-window -t $SESSION:3 -n 'Encoder #1'
+tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_one -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+
+tmux new-window -t $SESSION:4 -n 'Encoder #2'
+tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_two -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+
+tmux new-window -t $SESSION:5 -n 'Encoder #3'
+tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_three -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+
+tmux new-window -t $SESSION:6 -n 'HttpOrigin_1'
+tmux send-keys "idbash -l manager:config_server -n http_origin_1 -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m docker_origin -n http_origin -c k84l0661L26a aqb_bootstrap"
+
+tmux new-window -t $SESSION:7 -n 'HttpOrigin_2'
+tmux send-keys "idbash -l manager:config_server -n http_origin_2 -d /host/src/arqiva-encoder bash -l" C-m
+tmux send-keys "vir run -m docker_origin -n http_origin -c k84l0661L26a aqb_bootstrap"
+
+wait_for_container http_origin_1
+
+tmux new-window -t $SESSION:8 -n 'Startover_1'
+tmux send-keys "idbash -l http_origin_1:http_origin_1 -l manager:config_server -n http_startover_1 -d /host/src/arqiva-encoder bash -l" C-m
+
+tmux -2 attach-session -t $SESSION
+
+echo "Killing session cos you detached"
+tmux kill-session -t $SESSION
+
+echo "killing any running docker bits"
+nuke_all_containers
+
+

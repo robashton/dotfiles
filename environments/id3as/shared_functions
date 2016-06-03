@@ -1,0 +1,35 @@
+function nuke_container {
+  docker kill $1 > /dev/null 2>&1 || true
+  docker rm $1  > /dev/null 2>&1 || true
+}
+
+function nuke_all_containers {
+  nuke_container redis
+  nuke_container whiplash
+  nuke_container fake_mci
+  nuke_container local_occy
+  nuke_container central_occy
+  nuke_container manager
+  nuke_container cutting_ui
+  nuke_container relay
+  nuke_container mee_encoder_primary
+  nuke_container mee_encoder_backup
+  nuke_container encoder-nginx
+}
+
+function run_command {
+  local app=$1
+  local mode=$2
+  shift 2
+  echo "erl -pa _build/default/lib/*/ebin _checkouts/*/ebin -boot _build/default/rel/$app/releases/1/$app -config apps/$app/release-files/sys.config -$app mode $mode $@"
+}
+
+function wait_for_container {
+  local name=$1
+  local result=$(docker ps | grep $name)
+  if [[ -z $result ]]; then
+    echo "Waiting for $name"
+    sleep 1
+    wait_for_container $name
+  fi
+}
