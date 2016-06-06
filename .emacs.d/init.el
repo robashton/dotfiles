@@ -1,13 +1,35 @@
 ;; Get the package system setup
 (require 'package)
+
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 (package-initialize)
+
+;; textmate
+;; ack-and-a-half9
+;; isearch??
+;; helm-swoop
+;; magit
+;; ace-window (navigation between windows = much better)
+;; rainbow-delimeters
+;; jsx-mode
+;; smex <-- history
+
+;; confirm-nonexistent...
+;; textmate excludes..
+;; delete-trailing-whitespaces
+;; defalias yes-or-no-p
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
 (require 'use-package)
 
 ;; Complete Anything
@@ -20,13 +42,15 @@
 (use-package evil
   :ensure t
   :init (setq evil-want-C-u-scroll t)
-  :config (evil-mode 1)
-  )
+  :config (evil-mode 1))
 
+;; Prettify
 (use-package nyan-mode :ensure t)
 (use-package zone-nyan :ensure t)
-(use-package icicles :ensure t)
+(use-package rainbow-delimiters :ensure t)
 
+;; Git blame
+;;(use-package magit :ensure t)
 
 ;; Gimme some Erlang!
 (use-package erlang :ensure t)
@@ -34,28 +58,53 @@
 (use-package lfe-mode :ensure t)
 (use-package kerl :ensure t)
 
+;; And some jsx
+(use-package jsx-mode :ensure t)
 
-;; Other packages
+;; And some Elm
+(use-package elm-mode :ensure t)
+
+;; run elm inside container
+(setq-default elm-compile-command "id3as elm-make")
+(setq-default elm-create-package-command "id3as elm make --yes")
+(setq-default elm-package-command "id3as elm-package")
+(setq-default elm-oracle-command "id3as elm-oracle")
+(setq-default elm-interactive-command "id3as elm-repl")
+(setq-default elm-reactor-command "id3as -h elm-reactor")
+(setq-default elm-format-command "id3as elm-format")
+(setq-default elm-tags-on-save t)
+(setq-default elm-tags-exclude-elm-stuff nil)
+
+;; And use its tag search too
+(add-hook 'elm-mode-hook
+      (lambda ()
+        (define-key evil-normal-state-map (kbd "C-]") 'elm-mode-goto-tag-at-point)))
+
+;; Navigation
 (use-package flx-ido :ensure t)
 (use-package projectile
   :ensure t
   :config
   (setq projectile-enable-caching t)
-  (projectile-global-mode)
-  )
+  (projectile-global-mode))
 (use-package neotree :ensure t)
+(use-package ag :ensure t)
+(use-package textmate :ensure t)
+(use-package ack-and-a-half :ensure t)
+(use-package ace-window :ensure t)
+(use-package smex :ensure t)
+
+;; Not sure what this is (Stears?)
 (use-package editorconfig
   :ensure t
-  :config (editorconfig-mode 1)
-  )
-(use-package ag :ensure t)
+  :config (editorconfig-mode 1))
 
+;; Relative line numbers...
 (use-package linum-relative
   :ensure t
   :config
   (setq linum-relative-format "%3s ")
-  (linum-relative-global-mode)
-  )
+  (linum-relative-global-mode))
 
 ;; Configure identation
 (setq-default indent-tabs-mode nil)
@@ -72,6 +121,8 @@
 
 ; Very important
 (nyan-mode)
+(nyan-start-animation)
+(nyan-toggle-wavy-trail)
 
 ;; Tidy it up (especially for Gui version)
 (setq inhibit-startup-screen t)
