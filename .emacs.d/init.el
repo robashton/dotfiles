@@ -4,6 +4,7 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'load-path "~/.emacs.d/my-edts")
 
 (package-initialize)
 
@@ -42,7 +43,9 @@
 (use-package evil
   :ensure t
   :init (setq evil-want-C-u-scroll t)
-  :config (evil-mode 1))
+  :config (evil-mode 1)
+  (defalias #'forward-evil-word #'forward-evil-symbol)
+  )
 
 ;; Prettify
 (use-package nyan-mode :ensure t)
@@ -54,7 +57,8 @@
 
 ;; Gimme some Erlang!
 (use-package erlang :ensure t)
-(use-package edts :ensure t)
+(setq-default edts-inhibit-package-check t) 
+(use-package edts)
 (use-package lfe-mode :ensure t)
 (use-package kerl :ensure t)
 
@@ -71,7 +75,6 @@
 (setq-default elm-oracle-command "id3as elm-oracle")
 (setq-default elm-interactive-command "id3as elm-repl")
 (setq-default elm-reactor-command "id3as -h elm-reactor")
-(setq-default elm-format-command "id3as elm-format")
 (setq-default elm-tags-on-save t)
 (setq-default elm-tags-exclude-elm-stuff nil)
 
@@ -114,10 +117,11 @@
 (defvaralias 'erlang-indent-level 'tab-width)
 (defvaralias 'js-indent-level 'tab-width)
 
-;; Get EDTS Started
+;;;; Get EDTS Started
 (add-hook 'after-init-hook 'my-after-init-hook)
 (defun my-after-init-hook ()
   (require 'edts-start))
+
 
 ; Very important
 (nyan-mode)
@@ -135,8 +139,21 @@
 (global-set-key (kbd "C-<down>") 'shrink-window)
 (global-set-key (kbd "C-<up>") 'enlarge-window)
 
+
+;; Bit more neo-tree
+(defun neotree-project-dir ()
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (if project-dir
+        (progn
+          (neotree-dir project-dir)
+          (neotree-find file-name))
+              (message "Could not find git project root."))))
+
+
 (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
-(define-key evil-normal-state-map (kbd "C-n") 'neotree-toggle)
+(define-key evil-normal-state-map (kbd "C-n") 'neotree-project-dir)
 
 ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
 ;; I prefer using the "clipboard" selection (the one the
@@ -189,10 +206,43 @@
 ;; Neotree should follow changes to the project root
 (setq projectile-switch-project-action 'neotree-projectile-action)
 
+(setq erlang-electric-commands t)
+
 ;; I want to not use tags when in edts mode cos emacs tags are a bit pants by default
 (add-hook 'edts-mode-hook
       (lambda ()
+        (dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]  
+                     [mouse-2] [down-mouse-2] [drag-mouse-2] [double-mouse-2] [triple-mouse-2]
+                     [mouse-3] [down-mouse-3] [drag-mouse-3] [double-mouse-3] [triple-mouse-3]
+                     [mouse-4] [down-mouse-4] [drag-mouse-4] [double-mouse-4] [triple-mouse-4]
+                     [mouse-5] [down-mouse-5] [drag-mouse-5] [double-mouse-5] [triple-mouse-5]))
+          (global-unset-key k))
         (define-key evil-normal-state-map (kbd "C-]") 'edts-find-source-under-point)))
+
+(add-hook 'elm-mode-hook (lambda ()
+  (define-key evil-normal-state-local-map (kbd "=") 'elm-mode-format-buffer)))
+
+(add-hook 'makefile-mode-hook
+  (lambda ()
+    (setq indent-tabs-mode t)
+    (setq-default indent-tabs-mode t)
+    (setq tab-width 2)))
+(add-hook 'makefile-gmake-mode-hook
+  (lambda ()
+    (setq indent-tabs-mode t)
+    (setq-default indent-tabs-mode t)
+    (setq tab-width 2)))
+; Convert hard tabs to spaces on save
+(add-hook 'before-save-hook
+  (lambda ()
+    ; But not Makefiles
+    (if (member major-mode '(makefile-mode makefile-gmake-mode))
+      (tabify (point-min) (point-max))
+      (untabify (point-min) (point-max)))))
+
+;; (setq edts-log-level 'debug)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 (add-hook 'neotree-mode-hook
           (lambda ()
@@ -200,12 +250,20 @@
             ;; Line numbers are pointless in neovim
             (linum-mode 0)
 
+            ;; And vim-likes
+            (define-key evil-normal-state-local-map (kbd "m a") 'neotree-create-node)
+            (define-key evil-normal-state-local-map (kbd "m c") 'neotree-copy-node)
+            (define-key evil-normal-state-local-map (kbd "m d") 'neotree-delete-node)
+            (define-key evil-normal-state-local-map (kbd "m m") 'neotree-rename-node)
+            (define-key evil-normal-state-local-map (kbd "r") 'neotree-refresh)
+
             ;; Neotree keybindings to override evil mode
-            (define-key evil-normal-state-local-map (kbd "C-n") 'neotree-toggle)
+            (define-key evil-normal-state-local-map (kbd "C-n") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+
 
 ;; Some custom shit
 ;; This is all the functions I was used to using in vim
@@ -231,4 +289,22 @@
 
   )
 
-  
+
+(setq backup-by-copying t      ; don't clobber symlinks
+      backup-directory-alist '(("." . "~/.tmp/emacs-saves"))    ; don't litter my fs tree
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)       ; use versioned backups
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -120,5 +120,6 @@ alias gc='git add -A && git commit -m'
 alias node="nodejs"
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="~/.local/bin:/usr/local/heroku/bin:$PATH"
 alias fuck='eval $(thefuck $(fc -ln -1))'
+

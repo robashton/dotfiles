@@ -48,6 +48,7 @@ install_plugin "https://github.com/eagletmt/ghcmod-vim.git" "ghcmod-vim"
 install_plugin "https://github.com/eagletmt/neco-ghc.git" "neco-ghc"
 install_plugin "https://github.com/neovimhaskell/haskell-vim.git" "haskell-vim"
 install_plugin "git@github.com:Shougo/vimproc.vim.git" "vimproc.vim"
+install_plugin "git@github.com:ElmCast/elm-vim.git" "elm-vim"
 
 pushd "$HOME/.vim/bundle/vimproc.vim"
 make

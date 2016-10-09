@@ -14,7 +14,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "Disable syntastic cos vimerl does this better
-"let g:syntastic_erlang_checkers = []
+let g:syntastic_erlang_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Allow project specific defaults (mostly override the above)
@@ -61,6 +61,7 @@ autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 autocmd BufRead *.dtl set ft=htmldjango
 autocmd BufWritePost *.hs :GhciFile
+autocmd BufWritePost *.elm :ElmFormat
 
 
 nnoremap gd :OmniSharpGotoDefinition<cr>
@@ -179,7 +180,7 @@ noremap <ScrollWheelRight>   <nop>
 noremap <S-ScrollWheelRight> <nop>
 noremap <C-ScrollWheelRight> <nop>
 
-autocmd BufWritePre * :%s/\s\+$//e " Get rid of trailing whitespace
+autocmd BufWritePre *.erl :%s/\s\+$//e " Get rid of trailing whitespace in erlang only
 
 if !empty(glob("erl.mk"))
   :set path+=apps/**

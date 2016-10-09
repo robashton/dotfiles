@@ -9,6 +9,7 @@ function nuke_all_containers {
   nuke_container fake_mci
   nuke_container local_occy
   nuke_container central_occy
+  nuke_container encoder_occy
   nuke_container manager
   nuke_container cutting_ui
   nuke_container relay
@@ -20,8 +21,21 @@ function nuke_all_containers {
 function run_command {
   local app=$1
   local mode=$2
-  shift 2
-  echo "erl -pa _build/default/lib/*/ebin _checkouts/*/ebin -boot _build/default/rel/$app/releases/1/$app -config apps/$app/release-files/sys.config -$app mode $mode $@"
+  local version=${3:-"1"}
+  local cookie=${4:-"nocookie"}
+  local name=$(hostname -i)
+  shift 4
+  echo "erl -pa _build/default/lib/*/ebin _checkouts/*/ebin -setcookie $cookie -boot _build/default/rel/$app/releases/$version/$app -name $app@$name -config apps/$app/release-files/sys.config -$app mode $mode $@"
+}
+
+function run_erl {
+  local app=$1
+  local mode=$2
+  local version=${3:-"1"}
+  local cookie=${4:-"nocookie"}
+  local name=$(hostname -i)
+  shift 4
+  erl -pa _build/default/lib/*/ebin _checkouts/*/ebin -setcookie $cookie -boot _build/default/rel/$app/releases/$version/$app -name $app@$name -config apps/$app/release-files/sys.config -$app mode $mode $@
 }
 
 function wait_for_container {
@@ -33,3 +47,5 @@ function wait_for_container {
     wait_for_container $name
   fi
 }
+
+

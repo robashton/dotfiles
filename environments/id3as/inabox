@@ -5,9 +5,17 @@ SESSION=ARQIVA
 
 source shared_functions
 
-MONGODIR=$PWD/_mongo
-
-echo $MONGODIR
+function nuke_all_containers {
+  nuke_container redis
+  nuke_container occy_encoder
+  nuke_container manager
+  nuke_container encoder_one
+  nuke_container encoder_two
+  nuke_container encoder_three
+  nuke_container http_origin_1
+  nuke_container http_origin_2
+  nuke_container http_startover_1
+}
 
 echo "Stopping any running containers"
 nuke_all_containers
@@ -35,29 +43,35 @@ tmux send-keys "docker exec -ti $REDISID redis-cli" C-m
 
 tmux new-window -t $SESSION:2 -n 'Manager'
 tmux send-keys "idbash -l redis:redis -n manager -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m robashton -n manager -c k84l0661L26a aqb_manager"
+tmux send-keys "source /home/robashton/environments/id3as/shared_functions" C-m
+tmux send-keys "run_erl aqb_manager robashton 1.0.0 mycookie"
 
 wait_for_container manager
 
 tmux new-window -t $SESSION:3 -n 'Encoder #1'
 tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_one -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+tmux send-keys "source /host/shared_functions" C-m
+tmux send-keys "run_erl aqb_bootstrap docker_encoder 1.0.0 mycookie"
 
 tmux new-window -t $SESSION:4 -n 'Encoder #2'
 tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_two -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+tmux send-keys "source /host/shared_functions" C-m
+tmux send-keys "run_erl aqb_bootstrap docker_encoder 1.0.0 mycookie"
 
 tmux new-window -t $SESSION:5 -n 'Encoder #3'
 tmux send-keys "idbash -l redis:redis -l occy_encoder:occy -n encoder_three -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m docker_encoder -n encoder -c k84l0661L26a aqb_bootstrap"
+tmux send-keys "source /host/shared_functions" C-m
+tmux send-keys "run_erl aqb_bootstrap docker_encoder 1.0.0 mycookie"
 
 tmux new-window -t $SESSION:6 -n 'HttpOrigin_1'
 tmux send-keys "idbash -l manager:config_server -n http_origin_1 -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m docker_origin -n http_origin -c k84l0661L26a aqb_bootstrap"
+tmux send-keys "source /host/shared_functions" C-m
+tmux send-keys "run_erl aqb_bootstrap docker_origin 1.0.0 mycookie"
 
 tmux new-window -t $SESSION:7 -n 'HttpOrigin_2'
 tmux send-keys "idbash -l manager:config_server -n http_origin_2 -d /host/src/arqiva-encoder bash -l" C-m
-tmux send-keys "vir run -m docker_origin -n http_origin -c k84l0661L26a aqb_bootstrap"
+tmux send-keys "source /host/shared_functions" C-m
+tmux send-keys "run_erl aqb_bootstrap docker_origin 1.0.0 mycookie"
 
 wait_for_container http_origin_1
 
