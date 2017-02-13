@@ -51,6 +51,7 @@ function install_erlang {
 function install_packages {
     apt_install xmonad
     apt_install gnome-panel
+    apt_install gnome-shell
     install_erlang
     apt_install tig
     apt_install suckless-tools
@@ -82,6 +83,10 @@ function setup_git {
   git config --global push.default simple
 }
 
+function setup_user {
+  usermod -a -G docker robashton
+}
+
 function setup_symlinks {
   ln -fs /usr/bin/nodejs /usr/bin/node
 }
@@ -95,3 +100,4 @@ install_packages
 setup_super
 setup_vim
 setup_xmonad
+setup_user
