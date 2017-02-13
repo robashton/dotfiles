@@ -31,10 +31,8 @@ function apt_install {
 };
 
 function ensure_sources {
-  sh -c 'echo "deb http://archive.canonical.com/ubuntu trusty partner" > /etc/apt/sources.list.d/canonical_partner.list'
-  dpkg --add-architecture i386
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-  sh -c 'echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list'
+  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-yakkety main'
   apt-get update
   apt-get upgrade
 };
@@ -62,21 +60,15 @@ function install_packages {
     apt_install exuberant-ctags
     apt_install acpi
     apt_install skype
-    apt_install super
     apt_install nodejs
     apt_install build-essential
     apt_install silversearcher-ag
     apt_install tmux
-    apt_install lxc-docker
     apt_install kdiff3
     apt_install openssh-server
     apt_install htop
     apt_install gawk
-}
-
-function setup_super {
-  echo "Setting up super"
-  cp _cfg/super.tab /etc/super.tab
+    apt_install docker-engine
 }
 
 function setup_xmonad {
@@ -88,10 +80,6 @@ function setup_git {
   git config --global user.name "Rob Ashton"
   git config --global user.email "robashton@codeofrob.com"
   git config --global push.default simple
-}
-
-function setup_user {
-  usermod -G docker robashton
 }
 
 function setup_symlinks {
@@ -107,4 +95,3 @@ install_packages
 setup_super
 setup_vim
 setup_xmonad
-setup_user
