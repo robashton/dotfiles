@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [[ $UID -ne 0 ]]; then
-  echo "$0 must be run as root"
-  exit 1
-fi
-
 function install_plugin {
   local source=$1
   local output=$2
