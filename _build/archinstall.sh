@@ -3,6 +3,7 @@ pacman -S mesa
 pacman -S --needed base-devel
 pacman -S iw
 pacman -S wpa_supplicant
+pacman -S wpa_actiond
 pacman -S vim
 pacman -S git
 pacman -S xmonad
@@ -24,3 +25,16 @@ pacman -S cpupower
 pacman -S lightdm lightdm-gtk-greeter
 systemctl enable lightdm.service
 pacman -S docker
+pacman -S xcompmgr
+pacman -S tmux
+pacman -S vlc
+pacman -S qt4
+pacman -S erlang
+pacman -S nodejs
+pacman -S wireshark-qt
+sudo npm install -g elm-format
+pacman -S pcre 
+pacman -S pkg-config 
+pacman -S automake
+pacman -S units
+pacman -S msitools
