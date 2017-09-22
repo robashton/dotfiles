@@ -26,5 +26,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-#....
-xmodmap $HOME/.Xmodmap
+export XKB_DEFAULT_LAYOUT=gb
+export XKB_DEFAULT_OPTIONS=compose:ralt,ctrl:nocaps
+export GTK_CSD=0

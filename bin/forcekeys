@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function force_keys {
+  xmodmap /home/robashton/.Xmodmap
+  sleep 1
+  force_keys
+}
+
+force_keys
+
+

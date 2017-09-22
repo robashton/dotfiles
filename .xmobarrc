@@ -1,0 +1,35 @@
+Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+        , borderColor = "black"
+        , border = TopB
+        , bgColor = "black"
+        , fgColor = "grey"
+        , position = BottomW L 100
+        , commands = [  Run Network "wlp2s0" ["-t", "<rx> / <tx>", "-S", "true", "-L","0","-H","3000","--normal","darkgreen", "--low", "darkgreen", "--high","red"] 10
+                      , Run Wireless "wlp2s0" [ "-t", "<essid>" ] 10
+                      , Run Cpu [ "-t", "CPU: <total>%", "-m", "2", "-c", "0",  "-L","3","-H","75","--normal","darkgreen", "--low", "darkgreen" ,"--high","red"] 10
+                      , Run CpuFreq ["-t", "<cpu0>Ghz <cpu1>GHz <cpu2>Ghz <cpu3>Ghz <cpu4>Ghz <cpu5>Ghz <cpu6>Ghz <cpu7>Ghz", "-d", "2", "-M", "4", "-L", "0", "-H", "5", "-l", "lightblue", "-n","white", "-h", "red"] 50
+                      , Run Memory ["-t","Mem: <usedratio>%", "-L", "0", "-M", "40", "-H", "65",  "--low", "darkgreen", "--normal", "darkgreen", "--high", "red" ] 10
+                      , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                      , Run CoreTemp ["-t", "<core0>C <core1>C <core2>C <core3>C <core4>C", "-L", "40", "-H", "80", "--low", "lightblue", "--normal", "darkgreen", "-h", "red"] 50
+                      , Run Com "/bin/bash" ["-c", "~/bin/speaker"] "volume" 1
+                      , Run Com "/bin/bash" ["-c", "~/bin/mic"]  "mic" 1
+                      , Run Battery [ "--template" , "Batt: <acstatus>"
+                        , "--Low"      , "10"        -- units: %
+                        , "--High"     , "80"        -- units: %
+                        , "--low"      , "darkred"
+                        , "--normal"   , "darkorange"
+                        , "--high"     , "darkgreen"
+
+                        , "--" -- battery specific options
+                                  -- discharging status
+                                  , "-o"	, "<left>% (<timeleft>)"
+                                  -- AC "on" status
+                                  , "-O"	, "<fc=#dAA520>Charging</fc>"
+                                  -- charged status
+                                  , "-i"	, "<fc=#006000>Charged</fc>"
+                          ] 50
+                        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = "%cpu% (%coretemp%) | %memory% | %battery% | Wifi: (%wlp2s0wi%) %wlp2s0% }{ Vol: %volume% : Mic: %mic% | <fc=#ee9a00>%date%</fc>"
+        }

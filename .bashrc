@@ -123,3 +123,6 @@ alias node="nodejs"
 export PATH="~/.local/bin:/usr/local/heroku/bin:$PATH"
 alias fuck='eval $(thefuck $(fc -ln -1))'
 
+
+
+

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+case $1 in
+  on) 
+    amixer set Master on
+    amixer set Master 75%
+    ;;
+  off)
+    amixer set Master 0%
+    amixer set Master off
+    ;;
+  toggle)
+    amixer set Master toggle
+    ;;
+  up) 
+    amixer set Master 10%+
+    ;;
+  down) 
+    amixer set Master 10%-
+    ;;
+   "")
+    line=$(amixer sget Master | tail -n 1)
+    if [[ $line == *"off"* ]]; then
+      echo "[off]"
+    else
+      echo $(echo $line | awk '{print $5}')
+    fi
+    ;;
+esac
+

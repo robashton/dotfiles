@@ -1,0 +1,31 @@
+#bin/bash
+#
+#
+
+function do_status {
+  echo "$(do_battery) : $(do_wifi) | $(do_speaker) | $(do_mic)"
+}
+
+function do_battery {
+  local result=$(acpi | awk '{print $4}')
+  echo "Battery: $result"
+}
+
+function do_wifi {
+    local value=$(iwconfig wlp2s0 | head -n 1 | awk '{print $4}')
+    echo "Wifi: $value"
+}
+
+function do_speaker {
+  local level=$(amixer sget Master | tail -n 1 | awk '{print $5}')
+  local on=$(amixer sget Master | tail -n 1 | awk '{print $6}')
+  echo "Speaker: $level:$on"
+}
+
+function do_mic {
+  local level=$(amixer sget Capture | tail -n 1 | awk '{print $5}')
+  local on=$(amixer sget Capture | tail -n 1 | awk '{print $6}')
+  echo "Mic: $level:$on"
+}
+
+do_status

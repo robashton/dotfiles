@@ -40,13 +40,14 @@ install_plugin "https://github.com/edkolev/erlang-motions.vim.git" "erlang-motio
 install_plugin "https://github.com/eagletmt/ghcmod-vim.git" "ghcmod-vim"
 install_plugin "https://github.com/eagletmt/neco-ghc.git" "neco-ghc"
 install_plugin "https://github.com/neovimhaskell/haskell-vim.git" "haskell-vim"
-install_plugin "git@github.com:Shougo/vimproc.vim.git" "vimproc.vim"
-install_plugin "git@github.com:ElmCast/elm-vim.git" "elm-vim"
+install_plugin "https://github.com/Shougo/vimproc.vim.git" "vimproc.vim"
+install_plugin "https://github.com/vim-erlang/vim-erlang-runtime" "vim-erlang-runtime"
+install_plugin "https://github.com/vim-erlang/vim-erlang-tags" "vim-erlang-tags"
+install_plugin "https://github.com/vim-erlang/vim-erlang-compiler" "vim-erlang-compiler"
+install_plugin "https://github.com/ElmCast/elm-vim.git" "elm-vim"
 
 pushd "$HOME/.vim/bundle/vimproc.vim"
 make
 popd
 
 mkdir -p "$HOME/.vim/plugin"
-curl "http://www.vim.org/scripts/download_script.php?src_id=20377" > "$HOME/.vim/plugin/shim.vim"
-curl "http://www.vim.org/scripts/download_script.php?src_id=6678" > "$HOME/.vim/syntax/htmldjango.vim"

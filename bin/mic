@@ -1,0 +1,28 @@
+#!/bin/bash
+
+case $1 in
+  on) 
+    amixer set Capture 100%
+    ;;
+  off)
+    amixer set Capture 0%
+    ;;
+  toggle)
+    amixer set Capture toggle
+    ;;
+  up) 
+    amixer set Capture 10%+
+    ;;
+  down) 
+    amixer set Capture 10%-
+    ;;
+   "")
+    line=$(amixer sget Capture | tail -n 1)
+    if [[ $line == *"off"* ]]; then
+      echo "[off]"
+    else
+      echo $(echo $line | awk '{print $5}')
+    fi
+    ;;
+esac
+
