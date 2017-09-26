@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sink=$(pactl info | grep "Default Sink")
+
+if [[ "$sink" == *"pci"* ]]; then
+  echo "Internal"
+elif [[ "$sink" == *"Jabra"* ]]; then
+  echo "Jabra"
+else
+  echo "Unknown Device"
+fi

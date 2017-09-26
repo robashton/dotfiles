@@ -21,7 +21,11 @@ case $1 in
     if [[ $line == *"off"* ]]; then
       echo "[off]"
     else
-      echo $(echo $line | awk '{print $5}')
+      if [[ $line = *"Mono"* ]]; then
+        echo $(echo $line | awk '{print $4}')
+      else
+        echo $(echo $line | awk '{print $5}')
+        fi
     fi
     ;;
 esac

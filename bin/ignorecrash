@@ -1,0 +1,9 @@
+#!/bin/bash
+
+shitprog=$@
+
+while true; 
+  do $shitprog 
+  done
+
+
