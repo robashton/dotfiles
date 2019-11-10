@@ -45,6 +45,7 @@ install_plugin "https://github.com/vim-erlang/vim-erlang-runtime" "vim-erlang-ru
 install_plugin "https://github.com/vim-erlang/vim-erlang-tags" "vim-erlang-tags"
 install_plugin "https://github.com/vim-erlang/vim-erlang-compiler" "vim-erlang-compiler"
 install_plugin "https://github.com/ElmCast/elm-vim.git" "elm-vim"
+install_plugin "https://github.com/raichoo/purescript-vim.git" "purescript-vim"
 
 pushd "$HOME/.vim/bundle/vimproc.vim"
 make
